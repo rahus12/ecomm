@@ -6,7 +6,7 @@ from django.contrib.auth.hashers import make_password, check_password
 # creating users
 class UserModel(models.Model):
     userID = models.AutoField(primary_key=True)
-    userName = models.CharField(max_length=80)
+    userName = models.CharField(max_length=80, unique=True)
     password = models.CharField(max_length=30)
 
     def set_password(self, raw_password):
