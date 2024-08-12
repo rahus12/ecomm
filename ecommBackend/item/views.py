@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework.decorators import api_view
 from rest_framework import status
-from .models import itemModel
+from .models import ItemModel
 from django.http.response import JsonResponse
 import json
 from .serializer import ItemSerializer
@@ -11,13 +11,13 @@ from .serializer import ItemSerializer
 def get_item_view(request, id):
     
     try:
-        item = itemModel.objects.get(itemId = id)
+        item = ItemModel.objects.get(itemId = id)
     except:
         return JsonResponse({"error":"item not found"},status = status.HTTP_404_NOT_FOUND)
 
     if request.method == 'GET':
         
-        item = itemModel.objects.get(itemId = id)
+        item = ItemModel.objects.get(itemId = id)
         return JsonResponse(data = {
             "name": item.name,
             "description": item.description,

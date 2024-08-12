@@ -18,11 +18,13 @@ from django.contrib import admin
 from django.urls import path, include
 from login.views import login_view
 from item.views import create_item_view, get_item_view
+from cart.views import CartView
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', login_view),
     path('item/<int:id>', get_item_view),
-    path('item/', create_item_view)
+    path('item/', create_item_view),
+    path('cart/<int:userId>', CartView)
 ]
