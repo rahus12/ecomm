@@ -13,7 +13,7 @@ def get_item_view(request, id):
     try:
         item = itemModel.objects.get(itemId = id)
     except:
-        return JsonResponse(status = status.HTTP_404_NOT_FOUND)
+        return JsonResponse({"error":"item not found"},status = status.HTTP_404_NOT_FOUND)
 
     if request.method == 'GET':
         
@@ -35,7 +35,7 @@ def get_item_view(request, id):
     
     elif request.method == 'DELETE':
         item.delete()
-        return JsonResponse(status = status.HTTP_200_OK)
+        return JsonResponse({"response":"item deleted"},status = status.HTTP_200_OK)
 
 
 
@@ -46,5 +46,5 @@ def create_item_view(request):
         serializer.save()        
         return JsonResponse(serializer.data, status = status.HTTP_201_CREATED)
     else:
-        return JsonResponse(status = status.HTTP_400_BAD_REQUEST)
+        return JsonResponse({"error":"incorrect input"},status = status.HTTP_400_BAD_REQUEST)
     
