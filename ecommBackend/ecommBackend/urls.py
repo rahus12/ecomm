@@ -16,15 +16,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from login.views import login_view
+from login.views import signup_view, login_view, forgot_password
 from item.views import create_item_view, get_item_view
 from cart.views import CartView
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('signup/', signup_view),
     path('login/', login_view),
+    path('forgot_password/<int:id>', forgot_password),
     path('item/<int:id>', get_item_view),
     path('item/', create_item_view),
-    path('cart/<int:userId>', CartView)
+    path('cart/', CartView)
 ]
